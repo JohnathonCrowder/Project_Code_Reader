@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function appendToTextbox(fileInfo) {
         if (textbox.value !== '') {
-            textbox.value += '\n\n';
+            textbox.value += '\n\n\n\n\n\n\n\n\n';
         }
         textbox.value += fileInfo;
     }
