@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var copyButton = document.getElementById('copyButton');
     var filePathList = document.getElementById('filePathList');
     var selectFileButton = document.getElementById('selectFileButton');
+    var clearButton = document.getElementById('clearListButton');
     var includeFileNameCheckbox = document.getElementById('includeFileNameCheckbox');
 
     copyButton.addEventListener('click', function() {
@@ -26,15 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(e) {
                 var fileContents = e.target.result;
                 var language = getLanguage(fileName);
+                var languageComment = getLanguageComment(language);
+                var fileInfo = '';
                 if (includeFileNameCheckbox.checked) {
-                    textbox.value = fileName + ':\n\n' + 'This code is in ' + language + '\n\n' + fileContents;
+                    fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
                 } else {
-                    textbox.value = fileContents;
+                    fileInfo = fileContents;
                 }
+                appendToTextbox(fileInfo);
             };
             reader.readAsText(file);
         });
         input.click();
+    });
+
+    function appendToTextbox(fileInfo) {
+        if (textbox.value !== '') {
+            textbox.value += '\n\n';
+        }
+        textbox.value += fileInfo;
+    }
+
+    clearButton.addEventListener('click', function() {
+        filePathList.innerHTML = '';
+        textbox.value = '';
     });
 
     function getLanguage(fileName) {
@@ -54,6 +70,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 return 'JSON';
             default:
                 return 'unknown';
+        }
+    }
+
+    function getLanguageComment(language) {
+        switch (language) {
+            case 'plain text':
+                return '# This code is in plain text';
+            case 'JavaScript':
+                return '// This code is in JavaScript';
+            case 'Python':
+                return '# This code is in Python';
+            case 'HTML':
+                return '<!-- This code is in HTML -->';
+            case 'CSS':
+                return '/* This code is in CSS */';
+            case 'JSON':
+                return '// This code is in JSON';
+            default:
+                return '# This code is in an unknown language';
         }
     }
 });
