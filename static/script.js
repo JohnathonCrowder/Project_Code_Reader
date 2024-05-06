@@ -14,7 +14,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     selectFileButton.addEventListener('click', function() {
-        // ... (existing code for selecting files)
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.txt, .js, .py, .html, .css, .json';
+        input.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            if (file && isValidFile(file)) {
+                var fileName = file.name;
+                var listItem = document.createElement('li');
+                listItem.textContent = fileName;
+                filePathList.appendChild(listItem);
+    
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var fileContents = e.target.result;
+                    var language = getLanguage(fileName);
+                    var languageComment = getLanguageComment(language);
+                    var fileInfo = '';
+                    if (includeFileNameCheckbox.checked) {
+                        fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
+                    } else {
+                        fileInfo = fileContents;
+                    }
+                    appendToTextbox(fileInfo);
+                };
+                reader.readAsText(file);
+            }
+        });
+        input.click();
     });
 
     selectDirectoryButton.addEventListener('click', function() {
