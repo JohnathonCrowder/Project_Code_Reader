@@ -6,14 +6,16 @@
 </head>
 <body>
     <div class="container">
-        <textarea id="textbox" readonly></textarea>
-        <button id="copyButton">Copy to Clipboard</button>
-        <div class="file-paths">
+        <div class="textbox-container">
+            <textarea id="textbox" readonly></textarea>
+        </div>
+        <div class="sidebar">
+            <button id="selectFileButton">Select File</button>
+            <button id="copyButton">Copy to Clipboard</button>
+            <button id="clearButton">Clear</button>
+            <label><input type="checkbox" id="includeFileNameCheckbox"> Include File Name</label>
             <h3>File Paths:</h3>
             <ul id="filePathList"></ul>
-            <button id="selectFileButton">Select File</button>
-            <button id="clearListButton">Clear List</button>
-            <label><input type="checkbox" id="includeFileNameCheckbox"> Include File Name</label>
         </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>

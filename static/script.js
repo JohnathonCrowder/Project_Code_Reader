@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var copyButton = document.getElementById('copyButton');
     var filePathList = document.getElementById('filePathList');
     var selectFileButton = document.getElementById('selectFileButton');
-    var clearButton = document.getElementById('clearListButton');
+    var clearButton = document.getElementById('clearButton');
     var includeFileNameCheckbox = document.getElementById('includeFileNameCheckbox');
 
     copyButton.addEventListener('click', function() {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     selectFileButton.addEventListener('click', function() {
         var input = document.createElement('input');
         input.type = 'file';
-        input.accept = '.txt, .js, .py, .html, .css, .json'; // Specify accepted file types
+        input.accept = '.txt, .js, .py, .html, .css, .json';
         input.addEventListener('change', function(event) {
             var file = event.target.files[0];
             var fileName = file.name;
@@ -41,17 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
         input.click();
     });
 
+    clearButton.addEventListener('click', function() {
+        filePathList.innerHTML = '';
+        textbox.value = '';
+    });
+
     function appendToTextbox(fileInfo) {
         if (textbox.value !== '') {
             textbox.value += '\n\n';
         }
         textbox.value += fileInfo;
     }
-
-    clearButton.addEventListener('click', function() {
-        filePathList.innerHTML = '';
-        textbox.value = '';
-    });
 
     function getLanguage(fileName) {
         var extension = fileName.split('.').pop();
