@@ -16,27 +16,33 @@ document.addEventListener('DOMContentLoaded', function() {
         var input = document.createElement('input');
         input.type = 'file';
         input.accept = '.txt, .js, .py, .html, .css, .json';
+        input.multiple = true;
         input.addEventListener('change', function(event) {
-            var file = event.target.files[0];
-            var fileName = file.name;
-            var listItem = document.createElement('li');
-            listItem.textContent = fileName;
-            filePathList.appendChild(listItem);
+            var files = event.target.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var fileName = file.name;
+                var listItem = document.createElement('li');
+                listItem.textContent = fileName;
+                filePathList.appendChild(listItem);
 
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var fileContents = e.target.result;
-                var language = getLanguage(fileName);
-                var languageComment = getLanguageComment(language);
-                var fileInfo = '';
-                if (includeFileNameCheckbox.checked) {
-                    fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
-                } else {
-                    fileInfo = fileContents;
-                }
-                appendToTextbox(fileInfo);
-            };
-            reader.readAsText(file);
+                var reader = new FileReader();
+                reader.onload = (function(fileName) {
+                    return function(e) {
+                        var fileContents = e.target.result;
+                        var language = getLanguage(fileName);
+                        var languageComment = getLanguageComment(language);
+                        var fileInfo = '';
+                        if (includeFileNameCheckbox.checked) {
+                            fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
+                        } else {
+                            fileInfo = fileContents;
+                        }
+                        appendToTextbox(fileInfo);
+                    };
+                })(fileName);
+                reader.readAsText(file);
+            }
         });
         input.click();
     });
