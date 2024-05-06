@@ -9,7 +9,7 @@
 }
 
 .sidebar {
-    width: 200px;
+    width: 500px;
     background-color: #f1f1f1;
     padding: 20px;
 }
@@ -26,9 +26,42 @@ button {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkblue;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
+}
+
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.dark-mode .sidebar {
+    background-color: #333;
+}
+
+.dark-mode textarea {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode button {
+    background-color: #555;
+    color: #fff;
+}
+
+.dark-mode button:hover {
+    background-color: #777;
 }

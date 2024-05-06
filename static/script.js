@@ -86,6 +86,12 @@ document.addEventListener('DOMContentLoaded', function() {
         textbox.value = '';
     });
 
+    var darkModeCheckbox = document.getElementById('darkModeCheckbox');
+
+    darkModeCheckbox.addEventListener('change', function() {
+        document.body.classList.toggle('dark-mode');
+    });
+
     function isValidFile(file) {
         var validExtensions = ['.txt', '.js', '.py', '.html', '.css', '.json'];
         var fileName = file.name.toLowerCase();
