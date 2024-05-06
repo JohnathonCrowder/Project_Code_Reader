@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var copyButton = document.getElementById('copyButton');
     var filePathList = document.getElementById('filePathList');
     var selectFileButton = document.getElementById('selectFileButton');
+    var selectDirectoryButton = document.getElementById('selectDirectoryButton');
     var clearButton = document.getElementById('clearButton');
     var includeFileNameCheckbox = document.getElementById('includeFileNameCheckbox');
 
@@ -13,35 +14,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     selectFileButton.addEventListener('click', function() {
+        // ... (existing code for selecting files)
+    });
+
+    selectDirectoryButton.addEventListener('click', function() {
         var input = document.createElement('input');
         input.type = 'file';
-        input.accept = '.txt, .js, .py, .html, .css, .json';
-        input.multiple = true;
+        input.webkitdirectory = true;
+        input.directory = true;
         input.addEventListener('change', function(event) {
             var files = event.target.files;
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
-                var fileName = file.name;
-                var listItem = document.createElement('li');
-                listItem.textContent = fileName;
-                filePathList.appendChild(listItem);
+                if (isValidFile(file)) {
+                    var fileName = file.webkitRelativePath;
+                    var listItem = document.createElement('li');
+                    listItem.textContent = fileName;
+                    filePathList.appendChild(listItem);
 
-                var reader = new FileReader();
-                reader.onload = (function(fileName) {
-                    return function(e) {
-                        var fileContents = e.target.result;
-                        var language = getLanguage(fileName);
-                        var languageComment = getLanguageComment(language);
-                        var fileInfo = '';
-                        if (includeFileNameCheckbox.checked) {
-                            fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
-                        } else {
-                            fileInfo = fileContents;
-                        }
-                        appendToTextbox(fileInfo);
-                    };
-                })(fileName);
-                reader.readAsText(file);
+                    var reader = new FileReader();
+                    reader.onload = (function(fileName) {
+                        return function(e) {
+                            var fileContents = e.target.result;
+                            var language = getLanguage(fileName);
+                            var languageComment = getLanguageComment(language);
+                            var fileInfo = '';
+                            if (includeFileNameCheckbox.checked) {
+                                fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
+                            } else {
+                                fileInfo = fileContents;
+                            }
+                            appendToTextbox(fileInfo);
+                        };
+                    })(fileName);
+                    reader.readAsText(file);
+                }
             }
         });
         input.click();
@@ -51,6 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
         filePathList.innerHTML = '';
         textbox.value = '';
     });
+
+    function isValidFile(file) {
+        var validExtensions = ['.txt', '.js', '.py', '.html', '.css', '.json'];
+        var fileName = file.name.toLowerCase();
+        return validExtensions.some(function(extension) {
+            return fileName.endsWith(extension);
+        });
+    }
+
 
     function appendToTextbox(fileInfo) {
         if (textbox.value !== '') {
