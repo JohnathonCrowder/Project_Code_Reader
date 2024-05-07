@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var clearButton = document.getElementById('clearButton');
     var includeFileNameCheckbox = document.getElementById('includeFileNameCheckbox');
     var darkModeCheckbox = document.getElementById('darkModeCheckbox');
+    var exportButton = document.getElementById('exportButton');
 
     // Event listener for copy button
     copyButton.addEventListener('click', function() {
@@ -44,6 +45,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Event listener for dark mode checkbox
     darkModeCheckbox.addEventListener('change', function() {
         document.body.classList.toggle('dark-mode');
+    });
+
+    // Event listener for export button
+    exportButton.addEventListener('click', function() {
+        var textboxContent = textbox.value;
+        var blob = new Blob([textboxContent], { type: 'text/plain' });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'exported_text.txt';
+        link.click();
+        URL.revokeObjectURL(url);
     });
 
     // Function to handle file selection
