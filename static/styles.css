@@ -76,6 +76,15 @@ ul {
     width: 80%;
 }
 
+.modal-content label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-content input[type="checkbox"] {
+    margin-right: 5px;
+}
+
 .close {
     color: #aaa;
     float: right;
@@ -132,4 +141,19 @@ body.dark-mode {
 .dark-mode .close:hover,
 .dark-mode .close:focus {
     color: #aaa;
+}
+
+.checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.checkbox-container label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
 }

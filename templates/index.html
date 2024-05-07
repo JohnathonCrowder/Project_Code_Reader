@@ -17,6 +17,7 @@
                 <button id="copyButton">Copy to Clipboard</button>
                 <button id="exportButton">Export to Text File</button>
                 <button id="clearButton">Clear</button>
+                <button id="settingsButton">Settings</button>
                 <label><input type="checkbox" id="includeFileNameCheckbox" checked> Include File Name</label>
                 <label><input type="checkbox" id="darkModeCheckbox" checked> Dark Mode</label>
                 <h3>File Paths:</h3>
@@ -26,8 +27,50 @@
         </div>
     </div>
     <div id="helpModal" class="modal">
-        <!-- ... -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Instructions</h2>
+            <p>The purpose of CodeFusionX is to gather various programming files and combine the code into a single text, making it easier to send to a large language model.</p>
+            <ol>
+                <li>Click the "Select File" button to choose individual files, or click the "Select Directory" button to select an entire directory containing programming files.</li>
+                <li>The selected file paths will be displayed in the sidebar.</li>
+                <li>The contents of the selected files will be combined and displayed in the textbox.</li>
+                <li>To include the file name and language-specific comments in the combined text, keep the "Include File Name" checkbox checked.</li>
+                <li>To copy the combined text to the clipboard, click the "Copy to Clipboard" button.</li>
+                <li>To export the combined text as a text file, click the "Export to Text File" button.</li>
+                <li>To clear the textbox and file paths, click the "Clear" button.</li>
+                <li>To toggle between light and dark modes, use the "Dark Mode" checkbox.</li>
+            </ol>
+        </div>
     </div>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <h3>Accepted File Types:</h3>
+            <div class="checkbox-container">
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".txt" checked> .txt</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".js" checked> .js</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".py" checked> .py</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".html" checked> .html</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".css" checked> .css</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".json" checked> .json</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".java" checked> .java</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".cpp" checked> .cpp</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".cs" checked> .cs</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".php" checked> .php</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".rb" checked> .rb</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".swift" checked> .swift</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".go" checked> .go</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".kt" checked> .kt</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".rs" checked> .rs</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".xml" checked> .xml</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".sql" checked> .sql</label>
+                <label><input type="checkbox" class="fileTypeCheckbox" value=".md" checked> .md</label>
+            </div>
+        </div>
+    </div>
+    
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

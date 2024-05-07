@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var helpButton = document.getElementById('helpButton');
     var helpModal = document.getElementById('helpModal');
     var closeButton = document.getElementsByClassName('close')[0];
+    var settingsButton = document.getElementById('settingsButton');
+    var settingsModal = document.getElementById('settingsModal');
+    var fileTypeCheckboxes = document.getElementsByClassName('fileTypeCheckbox');
+    var settingsButton = document.getElementById('settingsButton');
+    var settingsModal = document.getElementById('settingsModal');
+    var settingsCloseButton = settingsModal.getElementsByClassName('close')[0];
+    var fileTypeCheckboxes = document.getElementsByClassName('fileTypeCheckbox');
 
     // Event listener for copy button
     copyButton.addEventListener('click', function() {
@@ -76,6 +83,23 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('click', function(event) {
         if (event.target === helpModal) {
             helpModal.style.display = 'none';
+        }
+    });
+
+    // Event listener for settings button
+    settingsButton.addEventListener('click', function() {
+        settingsModal.style.display = 'block';
+    });
+
+    // Event listener for close button in the settings modal
+    settingsCloseButton.addEventListener('click', function() {
+        settingsModal.style.display = 'none';
+    });
+
+    // Event listener to close the settings modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === settingsModal) {
+            settingsModal.style.display = 'none';
         }
     });
 
@@ -144,6 +168,26 @@ document.addEventListener('DOMContentLoaded', function() {
         textbox.value += fileInfo;
     }
 
+    // Function to get the selected file types from the settings
+    function getSelectedFileTypes() {
+        var selectedTypes = [];
+        for (var i = 0; i < fileTypeCheckboxes.length; i++) {
+            if (fileTypeCheckboxes[i].checked) {
+                selectedTypes.push(fileTypeCheckboxes[i].value);
+            }
+        }
+        return selectedTypes;
+    }
+
+    // Update the isValidFile function to use the selected file types
+    function isValidFile(file) {
+        var selectedTypes = getSelectedFileTypes();
+        var fileName = file.name.toLowerCase();
+        return selectedTypes.some(function(extension) {
+            return fileName.endsWith(extension);
+        });
+    }
+
     // Function to get the language based on file extension
     function getLanguage(fileName) {
         var extension = fileName.split('.').pop();
@@ -160,6 +204,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 return 'CSS';
             case 'json':
                 return 'JSON';
+            case 'java':
+                return 'Java';
+            case 'cpp':
+                return 'C++';
+            case 'cs':
+                return 'C#';
+            case 'php':
+                return 'PHP';
+            case 'rb':
+                return 'Ruby';
+            case 'swift':
+                return 'Swift';
+            case 'go':
+                return 'Go';
+            case 'kt':
+                return 'Kotlin';
+            case 'rs':
+                return 'Rust';
+            case 'xml':
+                return 'XML';
+            case 'sql':
+                return 'SQL';
+            case 'md':
+                return 'Markdown';
             default:
                 return 'unknown';
         }
@@ -180,6 +248,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 return '/* This code is in CSS */';
             case 'JSON':
                 return '// This code is in JSON';
+            case 'Java':
+                return '// This code is in Java';
+            case 'C++':
+                return '// This code is in C++';
+            case 'C#':
+                return '// This code is in C#';
+            case 'PHP':
+                return '// This code is in PHP';
+            case 'Ruby':
+                return '# This code is in Ruby';
+            case 'Swift':
+                return '// This code is in Swift';
+            case 'Go':
+                return '// This code is in Go';
+            case 'Kotlin':
+                return '// This code is in Kotlin';
+            case 'Rust':
+                return '// This code is in Rust';
+            case 'XML':
+                return '<!-- This code is in XML -->';
+            case 'SQL':
+                return '-- This code is in SQL';
+            case 'Markdown':
+                return '<!-- This code is in Markdown -->';
             default:
                 return '# This code is in an unknown language';
         }
