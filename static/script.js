@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var includeFileNameCheckbox = document.getElementById('includeFileNameCheckbox');
     var darkModeCheckbox = document.getElementById('darkModeCheckbox');
     var exportButton = document.getElementById('exportButton');
+    var helpButton = document.getElementById('helpButton');
+    var helpModal = document.getElementById('helpModal');
+    var closeButton = document.getElementsByClassName('close')[0];
 
     // Event listener for copy button
     copyButton.addEventListener('click', function() {
@@ -57,6 +60,23 @@ document.addEventListener('DOMContentLoaded', function() {
         link.download = 'exported_text.txt';
         link.click();
         URL.revokeObjectURL(url);
+    });
+
+    // Event listener for help button
+    helpButton.addEventListener('click', function() {
+        helpModal.style.display = 'block';
+    });
+
+    // Event listener for close button in the help modal
+    closeButton.addEventListener('click', function() {
+        helpModal.style.display = 'none';
+    });
+
+    // Event listener to close the help modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === helpModal) {
+            helpModal.style.display = 'none';
+        }
     });
 
     // Function to handle file selection

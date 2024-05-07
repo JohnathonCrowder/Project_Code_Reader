@@ -11,16 +11,22 @@
         </div>
         <div class="sidebar">
             <h1 class="title">Welcome to CodeFusionX</h1>
-            <button id="selectFileButton">Select File</button>
-            <button id="selectDirectoryButton">Select Directory</button>
-            <button id="copyButton">Copy to Clipboard</button>
-            <button id="exportButton">Export to Text File</button>
-            <button id="clearButton">Clear</button>
-            <label><input type="checkbox" id="includeFileNameCheckbox" checked> Include File Name</label>
-            <label><input type="checkbox" id="darkModeCheckbox" checked> Dark Mode</label>
-            <h3>File Paths:</h3>
-            <ul id="filePathList"></ul>
+            <div class="sidebar-content">
+                <button id="selectFileButton">Select File</button>
+                <button id="selectDirectoryButton">Select Directory</button>
+                <button id="copyButton">Copy to Clipboard</button>
+                <button id="exportButton">Export to Text File</button>
+                <button id="clearButton">Clear</button>
+                <label><input type="checkbox" id="includeFileNameCheckbox" checked> Include File Name</label>
+                <label><input type="checkbox" id="darkModeCheckbox" checked> Dark Mode</label>
+                <h3>File Paths:</h3>
+                <ul id="filePathList"></ul>
+            </div>
+            <button id="helpButton">Help</button>
         </div>
+    </div>
+    <div id="helpModal" class="modal">
+        <!-- ... -->
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

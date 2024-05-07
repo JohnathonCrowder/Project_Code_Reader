@@ -19,6 +19,14 @@
     width: 500px;
     background-color: #f1f1f1;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-content {
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 textarea {
@@ -48,6 +56,41 @@ ul {
     padding: 0;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 /* Dark mode styles */
 .dark-mode .title {
@@ -75,4 +118,18 @@ body.dark-mode {
 
 .dark-mode button:hover {
     background-color: #777;
+}
+
+.dark-mode .modal-content {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode .close {
+    color: #fff;
+}
+
+.dark-mode .close:hover,
+.dark-mode .close:focus {
+    color: #aaa;
 }
