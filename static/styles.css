@@ -1,3 +1,10 @@
+.title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .container {
     display: flex;
     height: 100vh;
@@ -43,6 +50,10 @@ ul {
 
 
 /* Dark mode styles */
+.dark-mode .title {
+    color: #fff;
+}
+
 body.dark-mode {
     background-color: #222;
     color: #fff;
