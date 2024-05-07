@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Get DOM elements
     var textbox = document.getElementById('textbox');
     var copyButton = document.getElementById('copyButton');
     var filePathList = document.getElementById('filePathList');
@@ -6,92 +7,69 @@ document.addEventListener('DOMContentLoaded', function() {
     var selectDirectoryButton = document.getElementById('selectDirectoryButton');
     var clearButton = document.getElementById('clearButton');
     var includeFileNameCheckbox = document.getElementById('includeFileNameCheckbox');
+    var darkModeCheckbox = document.getElementById('darkModeCheckbox');
 
+    // Event listener for copy button
     copyButton.addEventListener('click', function() {
         textbox.select();
         document.execCommand('copy');
         alert('Text copied to clipboard!');
     });
 
+    // Event listener for select file button
     selectFileButton.addEventListener('click', function() {
         var input = document.createElement('input');
         input.type = 'file';
         input.accept = '.txt, .js, .py, .html, .css, .json';
-        input.addEventListener('change', function(event) {
-            var file = event.target.files[0];
-            if (file && isValidFile(file)) {
-                var fileName = file.name;
-                var listItem = document.createElement('li');
-                listItem.textContent = fileName;
-                filePathList.appendChild(listItem);
-    
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var fileContents = e.target.result;
-                    var language = getLanguage(fileName);
-                    var languageComment = getLanguageComment(language);
-                    var fileInfo = '';
-                    if (includeFileNameCheckbox.checked) {
-                        fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
-                    } else {
-                        fileInfo = fileContents;
-                    }
-                    appendToTextbox(fileInfo);
-                };
-                reader.readAsText(file);
-            }
-        });
+        input.addEventListener('change', handleFileSelect);
         input.click();
     });
 
+    // Event listener for select directory button
     selectDirectoryButton.addEventListener('click', function() {
         var input = document.createElement('input');
         input.type = 'file';
         input.webkitdirectory = true;
         input.directory = true;
-        input.addEventListener('change', function(event) {
-            var files = event.target.files;
-            for (var i = 0; i < files.length; i++) {
-                var file = files[i];
-                if (isValidFile(file)) {
-                    var fileName = file.webkitRelativePath;
-                    var listItem = document.createElement('li');
-                    listItem.textContent = fileName;
-                    filePathList.appendChild(listItem);
-
-                    var reader = new FileReader();
-                    reader.onload = (function(fileName) {
-                        return function(e) {
-                            var fileContents = e.target.result;
-                            var language = getLanguage(fileName);
-                            var languageComment = getLanguageComment(language);
-                            var fileInfo = '';
-                            if (includeFileNameCheckbox.checked) {
-                                fileInfo = fileName + ':\n\n' + languageComment + '\n\n' + fileContents;
-                            } else {
-                                fileInfo = fileContents;
-                            }
-                            appendToTextbox(fileInfo);
-                        };
-                    })(fileName);
-                    reader.readAsText(file);
-                }
-            }
-        });
+        input.addEventListener('change', handleDirectorySelect);
         input.click();
     });
 
+    // Event listener for clear button
     clearButton.addEventListener('click', function() {
         filePathList.innerHTML = '';
         textbox.value = '';
     });
 
-    var darkModeCheckbox = document.getElementById('darkModeCheckbox');
-
+    // Event listener for dark mode checkbox
     darkModeCheckbox.addEventListener('change', function() {
         document.body.classList.toggle('dark-mode');
     });
 
+    // Function to handle file selection
+    function handleFileSelect(event) {
+        var file = event.target.files[0];
+        if (file && isValidFile(file)) {
+            var fileName = file.name;
+            addFilePathToList(fileName);
+            readFileContents(file);
+        }
+    }
+
+    // Function to handle directory selection
+    function handleDirectorySelect(event) {
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (isValidFile(file)) {
+                var fileName = file.webkitRelativePath;
+                addFilePathToList(fileName);
+                readFileContents(file);
+            }
+        }
+    }
+
+    // Function to check if a file has a valid extension
     function isValidFile(file) {
         var validExtensions = ['.txt', '.js', '.py', '.html', '.css', '.json'];
         var fileName = file.name.toLowerCase();
@@ -100,7 +78,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to add file path to the list
+    function addFilePathToList(fileName) {
+        var listItem = document.createElement('li');
+        listItem.textContent = fileName;
+        filePathList.appendChild(listItem);
+    }
 
+    // Function to read file contents
+    function readFileContents(file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var fileContents = e.target.result;
+            var language = getLanguage(file.name);
+            var languageComment = getLanguageComment(language);
+            var fileInfo = '';
+            if (includeFileNameCheckbox.checked) {
+                fileInfo = file.name + ':\n\n' + languageComment + '\n\n' + fileContents;
+            } else {
+                fileInfo = fileContents;
+            }
+            appendToTextbox(fileInfo);
+        };
+        reader.readAsText(file);
+    }
+
+    // Function to append file contents to the textbox
     function appendToTextbox(fileInfo) {
         if (textbox.value !== '') {
             textbox.value += '\n\n\n\n\n\n\n\n\n';
@@ -108,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textbox.value += fileInfo;
     }
 
+    // Function to get the language based on file extension
     function getLanguage(fileName) {
         var extension = fileName.split('.').pop();
         switch (extension) {
@@ -128,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Function to get the language-specific comment
     function getLanguageComment(language) {
         switch (language) {
             case 'plain text':
