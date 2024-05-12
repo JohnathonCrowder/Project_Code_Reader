@@ -103,6 +103,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Get the select all and unselect all buttons
+    var selectAllButton = document.getElementById('selectAllButton');
+    var unselectAllButton = document.getElementById('unselectAllButton');
+
+    // Event listener for the select all button
+    selectAllButton.addEventListener('click', function() {
+        for (var i = 0; i < fileTypeCheckboxes.length; i++) {
+            fileTypeCheckboxes[i].checked = true;
+        }
+    });
+
+    // Event listener for the unselect all button
+    unselectAllButton.addEventListener('click', function() {
+        for (var i = 0; i < fileTypeCheckboxes.length; i++) {
+            fileTypeCheckboxes[i].checked = false;
+        }
+    });
+
     // Function to handle file selection
     function handleFileSelect(event) {
         var file = event.target.files[0];
