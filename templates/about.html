@@ -5,9 +5,35 @@
 {% block content %}
     <div class="about-content">
         <h2>About CodeFusionX</h2>
-        <p>CodeFusionX is a web application designed to gather programming files and combine their code into a single text, making it easier to send to a large language model for analysis or processing.</p>
-        <p>With CodeFusionX, you can select individual files or entire directories containing programming files, and the application will extract the code from those files and display it in a convenient textbox. You can then copy the combined text to the clipboard or export it as a text file.</p>
-        <p>CodeFusionX supports various programming languages and file types, including Python, JavaScript, HTML, CSS, and more. It also provides options to include file names and language-specific comments in the combined text.</p>
-        <p>Whether you're a developer, researcher, or anyone working with code, CodeFusionX simplifies the process of gathering and combining code from multiple files, saving you time and effort.</p>
+        <p>CodeFusionX is a web application designed to gather programming files and combine their code into a single text, making it easier to send to a large language model for analysis or processing. It was developed to save time and effort for developers by automating the process of collecting and preparing code from multiple files.</p>
+        <h3>How CodeFusionX Works</h3>
+        <ol>
+            <li>
+                <strong>File Selection:</strong> CodeFusionX allows users to select individual files or entire directories containing programming files. When a file or directory is selected, the application retrieves the file paths and stores them internally.
+            </li>
+            <li>
+                <strong>File Reading:</strong> For each selected file, CodeFusionX reads the contents of the file using server-side file reading capabilities. It supports various programming languages and file types, including Python, JavaScript, HTML, CSS, and more.
+            </li>
+            <li>
+                <strong>Code Extraction:</strong> As CodeFusionX reads the contents of each file, it extracts the code from the files. It can optionally include file names and language-specific comments in the extracted code, providing context for the combined text.
+            </li>
+            <li>
+                <strong>Code Combination:</strong> After extracting the code from all selected files, CodeFusionX combines the code into a single text. It maintains the order of the files and separates the code from each file with appropriate delimiters or spacing.
+            </li>
+            <li>
+                <strong>Text Display:</strong> The combined code text is then displayed in a textbox on the user interface. Users can view the entire combined text and scroll through it as needed.
+            </li>
+            <li>
+                <strong>Text Manipulation:</strong> CodeFusionX provides features to manipulate the combined text. Users can copy the text to the clipboard with a single click, making it easy to paste the code into other applications or documents. Additionally, users can export the combined text as a standalone text file for further use or sharing.
+            </li>
+            <li>
+                <strong>File Path Management:</strong> The application keeps track of the selected file paths and displays them in a list on the user interface. Users can view the list of file paths to see which files have been included in the combined text.
+            </li>
+            <li>
+                <strong>Settings and Customization:</strong> CodeFusionX offers various settings and customization options. Users can choose to include or exclude file names and language-specific comments in the combined text. They can also select the specific file types they want to include, allowing for flexibility in the code combination process.
+            </li>
+        </ol>
+        <p>By automating the process of gathering and combining code from multiple files, CodeFusionX simplifies the task of preparing code for analysis or processing by large language models. It provides a user-friendly interface and efficient file handling capabilities, saving developers valuable time and effort. With CodeFusionX, developers can focus on their core tasks while the application takes care of the tedious work of collecting and combining code.</p>
+        <p>Whether you're a developer working on a large project, a researcher analyzing code patterns, or anyone dealing with multiple code files, CodeFusionX streamlines your workflow and enhances productivity. It's a valuable tool that eliminates the manual effort required to gather and prepare code, allowing you to work more efficiently and effectively.</p>
     </div>
 {% endblock %}
