@@ -1,30 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CodeFusionX</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body class="dark-mode">
-    <div class="container">
-        <div class="textbox-container">
-            <textarea id="textbox" readonly></textarea>
+{% extends 'base.html' %}
+
+{% block title %}CodeFusionX{% endblock %}
+
+{% block content %}
+    <div class="textbox-container">
+        <textarea id="textbox" readonly></textarea>
+    </div>
+    <div class="sidebar">
+        <h1 class="title">Welcome to CodeFusionX</h1>
+        <div class="sidebar-content">
+            <button id="selectFileButton">Select File</button>
+            <button id="selectDirectoryButton">Select Directory</button>
+            <button id="copyButton">Copy to Clipboard</button>
+            <button id="exportButton">Export to Text File</button>
+            <button id="clearButton">Clear</button>
+            <button id="settingsButton">Settings</button>
+            <label><input type="checkbox" id="includeFileNameCheckbox" checked> Include File Name</label>
+            <label><input type="checkbox" id="darkModeCheckbox" checked> Dark Mode</label>
+            <h3>File Paths:</h3>
+            <ul id="filePathList"></ul>
         </div>
-        <div class="sidebar">
-            <h1 class="title">Welcome to CodeFusionX</h1>
-            <div class="sidebar-content">
-                <button id="selectFileButton">Select File</button>
-                <button id="selectDirectoryButton">Select Directory</button>
-                <button id="copyButton">Copy to Clipboard</button>
-                <button id="exportButton">Export to Text File</button>
-                <button id="clearButton">Clear</button>
-                <button id="settingsButton">Settings</button>
-                <label><input type="checkbox" id="includeFileNameCheckbox" checked> Include File Name</label>
-                <label><input type="checkbox" id="darkModeCheckbox" checked> Dark Mode</label>
-                <h3>File Paths:</h3>
-                <ul id="filePathList"></ul>
-            </div>
-            <button id="helpButton">Help</button>
-        </div>
+        <button id="helpButton">Help</button>
     </div>
     <div id="helpModal" class="modal">
         <div class="modal-content">
@@ -70,7 +66,4 @@
             </div>
         </div>
     </div>
-    
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-</html>
+{% endblock %}
