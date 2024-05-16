@@ -1,214 +1,215 @@
 .title {
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 24px;
-    font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .container {
-    display: flex;
-    height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 .textbox-container {
-    flex: 1;
-    padding: 20px;
+  flex: 1;
+  padding: 20px;
 }
 
 .sidebar {
-    width: 500px;
-    background-color: #f1f1f1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 500px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .sidebar-content {
-    flex-grow: 1;
-    overflow-y: auto;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 textarea {
-    width: 100%;
-    height: 100%;
-    resize: none;
-    font-size: 16px;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  font-size: 16px;
 }
 
 button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: darkblue;
+  background-color: darkblue;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
 .modal-content label {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .modal-content input[type="checkbox"] {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
-
 
 /* Dark mode styles */
 .dark-mode .title {
-    color: #fff;
+  color: #fff;
 }
 
 body.dark-mode {
-    background-color: #222;
-    color: #fff;
+  background-color: #222;
+  color: #fff;
 }
 
 .dark-mode .sidebar {
-    background-color: #333;
+  background-color: #333;
 }
 
 .dark-mode textarea {
-    background-color: #444;
-    color: #fff;
+  background-color: #444;
+  color: #fff;
 }
 
 .dark-mode button {
-    background-color: #555;
-    color: #fff;
+  background-color: #555;
+  color: #fff;
 }
 
 .dark-mode button:hover {
-    background-color: #777;
+  background-color: #777;
 }
 
 .dark-mode .modal-content {
-    background-color: #333;
-    color: #fff;
+  background-color: #333;
+  color: #fff;
 }
 
 .dark-mode .close {
-    color: #fff;
+  color: #fff;
 }
 
 .dark-mode .close:hover,
 .dark-mode .close:focus {
-    color: #aaa;
+  color: #aaa;
 }
 
 .checkbox-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
 }
 
 .checkbox-container label {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox-container input[type="checkbox"] {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 header {
-    background-color: #333;
-    padding: 10px;
-    margin-bottom: 20px; /* Add margin at the bottom of the header */
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 20px; /* Add margin at the bottom of the header */
 }
 
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 10px;
+  display: inline;
+  margin-right: 10px;
 }
 
 nav ul li a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .container {
-    display: flex;
-    height: calc(100vh - 100px); /* Adjust the height to account for header and footer */
+  display: flex;
+  height: calc(
+    100vh - 100px
+  ); /* Adjust the height to account for header and footer */
 }
 
 .textbox-container {
-    flex: 1;
-    padding: 20px;
+  flex: 1;
+  padding: 20px;
 }
 
 .sidebar {
-    width: 500px;
-    background-color: #f1f1f1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 20px; /* Add margin on the left side of the sidebar */
+  width: 500px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px; /* Add margin on the left side of the sidebar */
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    margin-top: 20px; /* Add margin at the top of the footer */
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px; /* Add margin at the top of the footer */
 }
 
 .about-content,
 .contact-content {
-    padding: 20px;
+  padding: 20px;
 }
