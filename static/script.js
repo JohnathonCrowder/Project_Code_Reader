@@ -216,10 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return 'JavaScript';
             case 'py':
                 return 'Python';
-                case 'ts':
-                    return 'TypeScript';
-                case 'tsx':
-                    return 'TSX';
+            case 'ts':
+                return 'TypeScript';
+            case 'tsx':
+                return 'TSX';
             case 'html':
                 return 'HTML';
             case 'css':
@@ -264,10 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 return '// This code is in JavaScript';
             case 'Python':
                 return '# This code is in Python';
-                case 'TypeScript':
-                    return '// This code is in TypeScript';
-                case 'TSX':
-                    return '// This code is in TSX';
+            case 'TypeScript':
+                return '// This code is in TypeScript';
+            case 'TSX':
+                return '// This code is in TSX';
             case 'HTML':
                 return '<!-- This code is in HTML -->';
             case 'CSS':
