@@ -246,6 +246,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return 'SQL';
             case 'md':
                 return 'Markdown';
+            case 'tsx':
+                return 'Tsx';
             default:
                 return 'unknown';
         }
